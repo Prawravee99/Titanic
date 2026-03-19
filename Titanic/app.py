@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 
@@ -7,7 +8,11 @@ st.set_page_config(
     layout="wide"
 )
 
-df = pd.read_csv("titanic.csv")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "titanic.csv")
+
+df = pd.read_csv(DATA_PATH)
 total_passengers = len(df)
 survival_rate = round(df['Survived'].mean() * 100, 2)
 features_used = df.shape[1]
